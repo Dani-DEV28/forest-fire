@@ -1,5 +1,13 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.List;
+=======
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import javax.management.Query;
+>>>>>>> fb370180acd4c9c59dbd8703291a0b2f1ecb08ed
 
 public class Fire {
     /**
@@ -48,7 +56,32 @@ public class Fire {
     public static int timeToBurn(char[][] forest, int matchR, int matchC) {
         // HINT: when adding to your BFS queue, you can include more information than
         // just a location. What other information might be useful?
-        return -1;
+        boolean[][] visited = new boolean[forest.length][forest[0].length];
+        char[] unburn = forest[matchR];
+
+        Queue<char[]> queue = new LinkedList<>();
+        queue.add(unburn);
+
+        int unburnStarter = 0;
+
+        while (!queue.isEmpty()) {
+            char[] current = queue.poll();
+            char curR = current[0];
+            char curC = current[1];
+
+            if(visited[curR][curC]){
+                continue;
+            }
+
+            if(forest[curR][curC] == 't'){
+                unburnStarter++;
+            }
+
+            queue.addAll(neighborTrees(forest, current));
+        }
+
+
+        return unburnStarter;
     }
 
     public static List<int[]> neighborTrees(char[][] forest, int[] location) {
