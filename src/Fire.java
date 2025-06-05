@@ -52,7 +52,15 @@ public class Fire {
     public static int timeToBurn(char[][] forest, int matchR, int matchC) {
         // HINT: when adding to your BFS queue, you can include more information than
         // just a location. What other information might be useful?
-        boolean[][] visited = new boolean[forest.length][forest[0].length];
+
+        int maxCol = 0;
+        for(char[] row: forest){
+            if(maxCol < row.length){
+                maxCol = row.length;
+            }
+        }
+
+        boolean[][] visited = new boolean[forest.length][maxCol];
 
         Queue<int[]> queue = new LinkedList<>();
 
