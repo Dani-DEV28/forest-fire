@@ -69,7 +69,9 @@ public class Fire {
                 continue;
             }
 
-            queue.addAll(neighborTrees(forest, match));
+            visited[curR][curC] = true;
+
+            queue.addAll(neighborTrees(forest, current));
             
             unburnStarter = current[2];
         }
