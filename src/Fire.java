@@ -70,7 +70,7 @@ public class Fire {
         }
 
 
-        return -1;
+        return unburnStarter;
     }
 
     
