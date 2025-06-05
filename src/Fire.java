@@ -1,13 +1,9 @@
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.List;
-=======
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 import javax.management.Query;
->>>>>>> fb370180acd4c9c59dbd8703291a0b2f1ecb08ed
 
 public class Fire {
     /**
@@ -57,7 +53,6 @@ public class Fire {
         // HINT: when adding to your BFS queue, you can include more information than
         // just a location. What other information might be useful?
         boolean[][] visited = new boolean[forest.length][forest[0].length];
-        char[] unburn = forest[matchR];
 
         Queue<int[]> queue = new LinkedList<>();
 
@@ -75,6 +70,8 @@ public class Fire {
             }
 
             queue.addAll(neighborTrees(forest, match));
+            
+            unburnStarter = current[2];
         }
 
         return unburnStarter;
