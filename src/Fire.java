@@ -59,27 +59,23 @@ public class Fire {
         boolean[][] visited = new boolean[forest.length][forest[0].length];
         char[] unburn = forest[matchR];
 
-        Queue<char[]> queue = new LinkedList<>();
-        queue.add(unburn);
+        Queue<int[]> queue = new LinkedList<>();
 
         int unburnStarter = 0;
+        int[] match = {matchR, matchC, 0};
+        queue.add(match);
 
         while (!queue.isEmpty()) {
-            char[] current = queue.poll();
-            char curR = current[0];
-            char curC = current[1];
+            int[] current = queue.poll();
+            int curR = current[0];
+            int curC = current[1];
 
             if(visited[curR][curC]){
                 continue;
             }
 
-            if(forest[curR][curC] == 't'){
-                unburnStarter++;
-            }
-
-            queue.addAll(neighborTrees(forest, current));
+            queue.addAll(neighborTrees(forest, match));
         }
-
 
         return unburnStarter;
     }
