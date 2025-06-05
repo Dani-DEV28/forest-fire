@@ -87,6 +87,7 @@ public class Fire {
     public static List<int[]> neighborTrees(char[][] forest, int[] location) {
         int curR = location[0];
         int curC = location[1];
+        int depth = location[2] + 1;
         List<int[]> neighbors = new ArrayList<>();
 
         int[][] directions = {
@@ -103,7 +104,7 @@ public class Fire {
             if (newR >= 0 && newR < forest.length &&
                     newC >= 0 && newC < forest[newR].length &&
                     forest[newR][newC] == 't') {
-                int[] validMove = { newR, newC };
+                int[] validMove = { newR, newC, depth };
                 neighbors.add(validMove);
             }
         }
