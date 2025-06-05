@@ -1,3 +1,10 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import javax.management.Query;
+
 public class Fire {
     /**
      * Returns how long it takes for all vulnerable trees to be set on fire if a
@@ -38,6 +45,33 @@ public class Fire {
     public static int timeToBurn(char[][] forest, int matchR, int matchC) {
         // HINT: when adding to your BFS queue, you can include more information than
         // just a location. What other information might be useful?
+        boolean[][] visited = new boolean[forest.length][forest[0].length];
+        char[] unburn = forest[0];
+
+        Queue<char[]> queue = new LinkedList<>();
+        queue.add(unburn);
+
+        int unburnStarter = 0;
+
+        while (!queue.isEmpty()) {
+            char[] current = queue.poll();
+            char curR = current[0];
+            char curC = current[1];
+
+            if(visited[curR][curC]){
+                continue;
+            }
+
+            if(forest[curR][curC] == 't'){
+                unburnStarter++;
+            }
+
+            queue.addAll(getNeighbors(forest, current));
+        }
+
+
         return -1;
     }
+
+    
 }
